@@ -3,25 +3,35 @@ void setup(){
     delay(10);
 }
 
+void flushBuffer(){
+    while(Serial.available()){
+        Serial.read();
+    }
+}
+
 void loop(){
     bool recibido = false;
     float radio = 0;
     float altura = 0;
     float pi = 3.1415926;
-    Serial.println("Introduzca radio de cono: ");
+    Serial.print("Introduzca radio de cono: ");
     while(true){
         if(Serial.available()){
             radio = Serial.parseFloat();
             delay(10);
+            flushBuffer();
+            Serial.println(radio);
             break;
         }
     }
     
-    Serial.println("Introduzca altura del cono: ");
+    Serial.print("Introduzca altura del cono: ");
     while(true){
         if(Serial.available()){
             altura = Serial.parseFloat();
             delay(10);
+            flushBuffer();
+            Serial.println(altura);
             break;
         }
     }
